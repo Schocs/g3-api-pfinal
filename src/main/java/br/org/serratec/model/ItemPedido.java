@@ -12,11 +12,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "itens_pedido")
+@Table(name = "item_pedido")
 public class ItemPedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_itens_pedido")
+	@Column(name = "id_item_pedido")
 	private Long idItensPedido;
 	
 	private Integer quantidade;
@@ -52,7 +52,7 @@ public class ItemPedido {
 	}
 
 
-	public Long getIdItensPedido() {
+	public Long getIdItemPedido() {
 		return idItensPedido;
 	}
 
