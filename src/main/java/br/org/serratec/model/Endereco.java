@@ -13,17 +13,15 @@ public class Endereco {
 
     private String cep;
 
-    private String logradouro;
-
-    private String complemento;
-
+    private String rua;
+    
     private String bairro;
 
-    private String localidade;
-
-    private String uf;
+    private String cidade;
     
-    private Integer ibge;
+    private String complemento;
+
+    private String estado;
 
     public Long getIdEndereco() {
         return idEndereco;
@@ -41,20 +39,12 @@ public class Endereco {
         this.cep = cep;
     }
 
-    public String getLogradouro() {
-        return logradouro;
+    public String getRua() {
+        return rua;
     }
 
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
+    public void setRua(String rua) {
+        this.rua = rua;
     }
 
     public String getBairro() {
@@ -65,28 +55,27 @@ public class Endereco {
         this.bairro = bairro;
     }
 
-    public String getLocalidade() {
-        return localidade;
+    public String getCidade() {
+        return cidade;
     }
 
-    public void setLocalidade(String localidade) {
-        this.localidade = localidade;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
-    public String getUf() {
-        return uf;
+    public String getComplemento() {
+        return complemento;
     }
 
-    public void setUf(String uf) {
-        this.uf = uf;
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
-    public Integer getIbge() {
-        return ibge;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setIbge(Integer ibge) {
-        this.ibge = ibge;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
-    
 }
