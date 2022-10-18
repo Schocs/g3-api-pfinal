@@ -31,12 +31,53 @@ public class ItemPedido {
 	//Precisa de FK?
 	@NotBlank(message = "Preencha o produto")
 	@OneToOne 
-	@JoinColumn(name = "id_produto")
+	@JoinColumn(name = "produto")
 	private Produto produto;
 	
 	//Precisa de FK?
 	@NotBlank(message = "Preencha o pedido")
 	@ManyToOne
-	@JoinColumn(name = "id_Pedido")
+	@JoinColumn(name = "Pedido")
 	private Pedido pedido;
+
+	public ItemPedido() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public ItemPedido(Integer quantidade, @NotBlank(message = "Preencha o produto") Produto produto,
+			@NotBlank(message = "Preencha o pedido") Pedido pedido) {
+		this.quantidade = quantidade;
+		this.produto = produto;
+		this.pedido = pedido;
+	}
+
+
+	public Long getIdItensPedido() {
+		return idItensPedido;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+	
 }
