@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -19,6 +21,11 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_pedido")
 	 private Long idPedido;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_cliente")
+	private Cliente cliente;
+	
 	
 	@Column(name="data_pedido")
 	private LocalDateTime dataPedido;
@@ -30,6 +37,16 @@ public class Pedido {
 	private LocalDateTime dataEnvio;
 	
 	private String status;
+
+	
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
 	public Long getIdPedido() {
 		return idPedido;
@@ -70,7 +87,7 @@ public class Pedido {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
 	
 	
 
