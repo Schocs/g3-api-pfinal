@@ -12,8 +12,14 @@ public class PedidoDTO {
 	    private LocalDateTime dataPedido;
 	    private Cliente cliente;
 	    private String status;
+	    
+	    
 		
-	    public PedidoDTO(Pedido pedido) {
+	    public PedidoDTO() {
+			
+		}
+
+		public PedidoDTO(Pedido pedido) {
 	    	this.idPedido = pedido.getIdPedido();
 			this.dataPedido = pedido.getDataPedido();
 			this.cliente = pedido.getCliente();
