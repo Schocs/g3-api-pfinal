@@ -1,5 +1,10 @@
 package br.org.serratec.repository;
 
-public interface PedidoRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
+
+import br.org.serratec.model.Pedido;
+
+public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
+	Pedido findByIdPedido (Integer id);
 }
