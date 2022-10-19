@@ -1,44 +1,32 @@
-package br.org.serratec.model;
+package br.org.serratec.dto;
 
 import java.sql.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
-import antlr.collections.List;
+import br.org.serratec.model.Produto;
 
-@Entity
-@Table(name = "produto")
-public class Produto {
+public class ProdutoDTO {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_produto")
 	private Long idproduto;
-
-	@Column(name = "nome", nullable = false, length = 40)
 	private String nome;
-
-	@Column(name = "descrição")
 	private String descricao;
-
-	@Column(name = "estoque")
 	private Integer estoque;
-
-	@Column(name = "datacadastro")
 	private Date data_cadastro;
-
-	@Column(name = "valor")
 	private Double valor;
-
-	@OneToOne
-	@Column(name = "categoria")
 	private String categoria;
 
+	public ProdutoDTO() {
+
+	}
+
+	public ProdutoDTO(Produto produto) {
+		this.idproduto = produto.getIdproduto();
+		this.nome = produto.getNome();
+		this.descricao = produto.getDescricao();
+		this.estoque = produto.getEstoque();
+		this.data_cadastro = produto.getData_cadastro();
+		this.valor = produto.getValor();
+		this.categoria = produto.getCategoria();
+	}
 
 	public Long getIdproduto() {
 		return idproduto;
@@ -94,10 +82,5 @@ public class Produto {
 
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
-	}
-
-	public List findAll() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
