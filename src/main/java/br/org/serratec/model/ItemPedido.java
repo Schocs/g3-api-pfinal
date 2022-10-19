@@ -21,16 +21,15 @@ public class ItemPedido {
 	
 	private Integer quantidade;
 	
-	/*
+	
 	@Column(name = "preco_itens")
-	private Double precoItens = produto.preco * quantidade;
-	*/
+	private Double precoItens = produto.getValor() * quantidade;
 	//Quantidade precisar virar double no cálculo
-	//Preço total da venda precisa ser calculado a partir de todos os precoItens da venda
+	//Corrigir erro "não pode referenciar até estar definido"
 	
 	//Precisa de FK?
 	@NotBlank(message = "Preencha o produto")
-	@OneToOne 
+	@OneToOne
 	@JoinColumn(name = "produto")
 	private Produto produto;
 	
@@ -39,10 +38,6 @@ public class ItemPedido {
 	@ManyToOne
 	@JoinColumn(name = "Pedido")
 	private Pedido pedido;
-
-	public ItemPedido() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	public ItemPedido(Integer quantidade, @NotBlank(message = "Preencha o produto") Produto produto,
 			@NotBlank(message = "Preencha o pedido") Pedido pedido) {
