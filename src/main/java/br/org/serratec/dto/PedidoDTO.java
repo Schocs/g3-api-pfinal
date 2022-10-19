@@ -1,6 +1,7 @@
 package br.org.serratec.dto;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import br.org.serratec.model.Cliente;
@@ -9,7 +10,7 @@ import br.org.serratec.model.Pedido;
 public class PedidoDTO {
 	
 	    private Long idPedido;
-	    private LocalDateTime dataPedido;
+	    private LocalDate dataPedido;
 	    private Cliente cliente;
 	    private String status;
 	    
@@ -34,11 +35,11 @@ public class PedidoDTO {
 			this.idPedido = idPedido;
 		}
 
-		public LocalDateTime getDataPedido() {
+		public LocalDate getDataPedido() {
 			return dataPedido;
 		}
 
-		public void setDataPedido(LocalDateTime dataPedido) {
+		public void setDataPedido(LocalDate dataPedido) {
 			this.dataPedido = dataPedido;
 		}
 

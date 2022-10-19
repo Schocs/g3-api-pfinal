@@ -1,9 +1,6 @@
 package br.org.serratec.model;
 
-
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,55 +9,78 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Pedido {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_pedido")
-	 private Long idPedido;
+	@Column(name = "id_pedido")
+	private Long idPedido;
+	
+	
+	@NotBlank (message = "Preencha data do pedido")
+	@Column( name = "data_pedido")
+	private LocalDate dataPedido;
+	
+	@NotBlank (message = "Preencha data da entrega")
+	@Column( name = "data_entrega")
+	private LocalDate dataEntrega ;
+	
+	@NotBlank (message = "Preencha data do envio")
+	@Column( name = "data_envio")
+	private LocalDate dataEnvio;
+	
+	@NotBlank (message = "Preencha Status")
+	@Size(max = 20)
+	@Column(nullable = true, length = 20)
+	private String status;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
-	
-	
-	@Column(name="data_pedido")
-	private LocalDateTime dataPedido;
-	
-	@Column (name = "data-entrega")
-	private LocalDate dataEntrega;
-	
-	@Column (name="data_envio")
-	private LocalDateTime dataEnvio;
-	
-	private String status;
 
 	
 	
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
+	
+	
+	
+	public Pedido(Long id, @NotBlank(message = "Preencha data do pedido") LocalDate dataPedido,
+			@NotBlank(message = "Preencha data da entrega") LocalDate dataEntrega,
+			@NotBlank(message = "Preencha data do envio") LocalDate dataEnvio,
+			@NotBlank(message = "Preencha Status") @Size(max = 20) String status, Cliente cliente) {
+		super();
+		this.idPedido = id;
+		this.dataPedido = dataPedido;
+		this.dataEntrega = dataEntrega;
+		this.dataEnvio = dataEnvio;
+		this.status = status;
 		this.cliente = cliente;
 	}
-
 	public Long getIdPedido() {
+		return null;
+	}
+
+	public Pedido() {
+		super();
+	}
+	
+	public Long getId() {
 		return idPedido;
 	}
 
-	public void setIdPedido(Long idPedido) {
-		this.idPedido = idPedido;
+
+	public void setId(Long id) {
+		this.idPedido = id;
 	}
 
-	public LocalDateTime getDataPedido() {
+	public LocalDate getDataPedido() {
 		return dataPedido;
 	}
 
-	public void setDataPedido(LocalDateTime dataPedido) {
+	public void setDataPedido(LocalDate dataPedido) {
 		this.dataPedido = dataPedido;
 	}
 
@@ -72,11 +92,11 @@ public class Pedido {
 		this.dataEntrega = dataEntrega;
 	}
 
-	public LocalDateTime getDataEnvio() {
+	public LocalDate getDataEnvio() {
 		return dataEnvio;
 	}
 
-	public void setDataEnvio(LocalDateTime dataEnvio) {
+	public void setDataEnvio(LocalDate dataEnvio) {
 		this.dataEnvio = dataEnvio;
 	}
 
@@ -88,7 +108,15 @@ public class Pedido {
 		this.status = status;
 	}
 
-	
-	
+	public Cliente getCliente() {
+		return cliente;
+	}
 
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	
+	
+	
 }
