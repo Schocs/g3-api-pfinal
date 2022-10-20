@@ -14,43 +14,42 @@ import javax.persistence.OneToMany;
 @Entity
 public class Categoria {
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name = "id_categoria")
-		private Long idCategoria;
-		private String nome;
-		private String descricao;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_categoria")
+	private Integer idCategoria;
+	private String nome;
+	private String descricao;
 
-		@OneToMany(mappedBy = "id.categoria", fetch = FetchType.EAGER)
-		private Set<Produto> Produto = new HashSet<>();
+	@OneToMany(mappedBy = "id.categoria", fetch = FetchType.EAGER)
+	private Set<Produto> Produto = new HashSet<>();
 
-		public Long getIdCategoria() {
-			return idCategoria;
-		}
+	public Integer getIdCategoria() {
+		return idCategoria;
+	}
 
-		public String getNome() {
-			return nome;
-		}
+	public String getNome() {
+		return nome;
+	}
 
-		public void setNome(String nome) {
-			this.nome = nome;
-		}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-		public String getDescricao() {
-			return descricao;
-		}
+	public String getDescricao() {
+		return descricao;
+	}
 
-		public void setDescricao(String descricao) {
-			this.descricao = descricao;
-		}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
-		public Set<Produto> getProduto() {
-			return Produto;
-		}
+	public Set<Produto> getProduto() {
+		return Produto;
+	}
 
-		public void setProduto(Set<Produto> produto) {
-			Produto = produto;
-		}
-		
-		
+	public void setProduto(Set<Produto> produto) {
+		Produto = produto;
+	}
+
 }
