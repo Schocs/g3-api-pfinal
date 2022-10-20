@@ -11,11 +11,5 @@ import br.org.serratec.model.ItemPedido;
 @RestController
 @RequestMapping("/ItemPedido")
 public class ItemPedidoController {
-	@Autowired
-	private ItemPedido itemPedidoRepository;
-
-	@GetMapping
-	public List listar(){
-	return itemPedidoRepository.findAll();
-	}
+	
 }
