@@ -33,73 +33,62 @@ public class ItemPedido {
 	@NotBlank(message = "Preencha o produto")
 	@OneToOne
 	@JoinColumn(name = "id_produto")
-	private Produto produto;
+	private Long idProduto;
 	
 	//Precisa de FK?
 	@NotBlank(message = "Preencha o pedido")
 	@ManyToOne
 	@JoinColumn(name = "id_pedido")
-	private Pedido pedido;
-	
-	
+	private Long idPedido;
+
 	public ItemPedido(@NotBlank(message = "Preencha a quantidade") Integer quantidade,
-			@NotBlank(message = "Preencha o preco da venda") @NotBlank(message = "Preencha o preco da venda") @NotBlank(message = "Preencha o preco da venda") Double precoVenda,
-			@NotBlank(message = "Preencha o produto") @NotBlank(message = "Preencha o produto") Produto produto,
-			@NotBlank(message = "Preencha o pedido") @NotBlank(message = "Preencha o pedido") Pedido pedido) {
+			@NotBlank(message = "Preencha o preco da venda") Double precoVenda,
+			@NotBlank(message = "Preencha o produto") Long idProduto,
+			@NotBlank(message = "Preencha o pedido") Long idPedido) {
 		this.quantidade = quantidade;
 		this.precoVenda = precoVenda;
-		this.produto = produto;
-		this.pedido = pedido;
+		this.idProduto = idProduto;
+		this.idPedido = idPedido;
 	}
-
 
 	public Long getIdItemPedido() {
 		return idItemPedido;
 	}
 
-
-	public void setIdItemPedido(Long idItensPedido) {
-		this.idItemPedido = idItensPedido;
+	public void setIdItemPedido(Long idItemPedido) {
+		this.idItemPedido = idItemPedido;
 	}
-
 
 	public Integer getQuantidade() {
 		return quantidade;
 	}
 
-
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
-
 
 	public Double getPrecoVenda() {
 		return precoVenda;
 	}
 
-
 	public void setPrecoVenda(Double precoVenda) {
 		this.precoVenda = precoVenda;
 	}
 
-
-	public Produto getProduto() {
-		return produto;
+	public Long getIdProduto() {
+		return idProduto;
 	}
 
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setIdProduto(Long idProduto) {
+		this.idProduto = idProduto;
 	}
 
-
-	public Pedido getPedido() {
-		return pedido;
+	public Long getIdPedido() {
+		return idPedido;
 	}
 
-
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
+	public void setIdPedido(Long idPedido) {
+		this.idPedido = idPedido;
 	}
 	
 }
