@@ -23,6 +23,12 @@ public class ItemPedidoService {
 	
 	//Buscar por idPedido?
 	
+	public Optional<List<ItemPedido>> listarTodos() {
+		Optional<List<ItemPedido>> itemPedido = Optional.ofNullable(itemPedidoRespository.findAll());
+		
+		return itemPedido;
+	}
+	
 	public Boolean cadastrar(ItemPedido dadosItemPedido) {
 		
 		try {
