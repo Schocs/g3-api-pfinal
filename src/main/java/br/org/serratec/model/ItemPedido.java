@@ -19,13 +19,13 @@ public class ItemPedido {
 	@Column(name = "id_item_pedido")
 	private Long idItensPedido;
 	
+	@NotBlank(message = "Preencha a quantidade")
+	@Column(nullable = false)
 	private Integer quantidade;
 	
-	
-	@Column(name = "preco_itens")
-	private Double precoItens = produto.getValor() * quantidade;
-	//Quantidade precisar virar double no cálculo
-	//Corrigir erro "não pode referenciar até estar definido"
+	@NotBlank(message = "Preencha o preco da venda")
+	@Column(nullable = false, name = "preco_venda")
+	private Double precoVenda;
 	
 	//Precisa de FK?
 	@NotBlank(message = "Preencha o produto")
@@ -39,13 +39,16 @@ public class ItemPedido {
 	@JoinColumn(name = "Pedido")
 	private Pedido pedido;
 	
-	public ItemPedido(Integer quantidade, @NotBlank(message = "Preencha o produto") Produto produto,
+	
+	public ItemPedido(@NotBlank(message = "Preencha a quantidade") Integer quantidade,
+			@NotBlank(message = "Preencha o preco da venda") Double precoVenda,
+			@NotBlank(message = "Preencha o produto") Produto produto,
 			@NotBlank(message = "Preencha o pedido") Pedido pedido) {
 		this.quantidade = quantidade;
+		this.precoVenda = precoVenda;
 		this.produto = produto;
 		this.pedido = pedido;
 	}
-
 
 	public Long getIdItemPedido() {
 		return idItensPedido;
@@ -53,6 +56,14 @@ public class ItemPedido {
 
 	public Integer getQuantidade() {
 		return quantidade;
+	}
+	
+	public Double getPrecoVenda() {
+		return precoVenda;
+	}
+
+	public void setPrecoVenda(Double precoVenda) {
+		this.precoVenda = precoVenda;
 	}
 
 	public void setQuantidade(Integer quantidade) {
