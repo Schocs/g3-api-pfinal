@@ -17,15 +17,19 @@ public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_categoria")
-	private Integer idCategoria;
+	private Long idCategoria;
 	private String nome;
 	private String descricao;
 
-	@OneToMany(mappedBy = "id.categoria", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
 	private Set<Produto> Produto = new HashSet<>();
 
-	public Integer getIdCategoria() {
+	public Long getIdCategoria() {
 		return idCategoria;
+	}
+
+	public void setIdCategoria(Long idCategoria) {
+		this.idCategoria = idCategoria;
 	}
 
 	public String getNome() {
