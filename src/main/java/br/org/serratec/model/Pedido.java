@@ -60,18 +60,13 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 	public Long getIdPedido() {
-		return null;
+		return this.idPedido;
 	}
 
 	public Pedido() {
 		super();
 	}
 	
-	public Long getId() {
-		return idPedido;
-	}
-
-
 	public void setId(Long id) {
 		this.idPedido = id;
 	}
