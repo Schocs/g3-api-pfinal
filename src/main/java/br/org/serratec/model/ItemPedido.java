@@ -33,18 +33,18 @@ public class ItemPedido {
 	@NotBlank(message = "Preencha o produto")
 	@OneToOne
 	@JoinColumn(name = "id_produto")
-	private Long idProduto;
+	private Produto idProduto;
 	
 	//Precisa de FK?
 	@NotBlank(message = "Preencha o pedido")
 	@ManyToOne
 	@JoinColumn(name = "id_pedido")
-	private Long idPedido;
+	private Pedido idPedido;
 
 	public ItemPedido(@NotBlank(message = "Preencha a quantidade") Integer quantidade,
 			@NotBlank(message = "Preencha o preco da venda") Double precoVenda,
-			@NotBlank(message = "Preencha o produto") Long idProduto,
-			@NotBlank(message = "Preencha o pedido") Long idPedido) {
+			@NotBlank(message = "Preencha o produto") @NotBlank(message = "Preencha o produto") Produto idProduto,
+			@NotBlank(message = "Preencha o pedido") @NotBlank(message = "Preencha o pedido") Pedido idPedido) {
 		this.quantidade = quantidade;
 		this.precoVenda = precoVenda;
 		this.idProduto = idProduto;
@@ -63,7 +63,7 @@ public class ItemPedido {
 		return quantidade;
 	}
 
-	public void setQuantidade(Integer quantidade) {
+	public void setQuantidade(@NotBlank(message = "Preencha a quantidade") Integer quantidade) {
 		this.quantidade = quantidade;
 	}
 
@@ -71,23 +71,23 @@ public class ItemPedido {
 		return precoVenda;
 	}
 
-	public void setPrecoVenda(Double precoVenda) {
+	public void setPrecoVenda(@NotBlank(message = "Preencha o preco da venda") Double precoVenda) {
 		this.precoVenda = precoVenda;
 	}
 
-	public Long getIdProduto() {
+	public Produto getIdProduto() {
 		return idProduto;
 	}
 
-	public void setIdProduto(Long idProduto) {
+	public void setIdProduto(@NotBlank(message = "Preencha o produto") Produto idProduto) {
 		this.idProduto = idProduto;
 	}
 
-	public Long getIdPedido() {
+	public Pedido getIdPedido() {
 		return idPedido;
 	}
 
-	public void setIdPedido(Long idPedido) {
+	public void setIdPedido(@NotBlank(message = "Preencha o pedido") Pedido idPedido) {
 		this.idPedido = idPedido;
 	}
 	
