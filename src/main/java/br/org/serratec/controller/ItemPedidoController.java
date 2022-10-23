@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.org.serratec.model.ItemPedido;
 import br.org.serratec.service.ItemPedidoService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @RequestMapping("/ItemPedido")
@@ -26,6 +29,14 @@ public class ItemPedidoController {
 	ItemPedidoService itemPedidoService;
 	
 	@GetMapping("/listar/todos")
+	@ApiOperation(value = "Buscar todos os itens de pedido cadastrados no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Retorna a lista de todos os itens de pedido cadastrados no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "404", description = "Itens de pedido não encontrados"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<List<ItemPedido>> listarTodos() {
 		
 		Optional<List<ItemPedido>> itemPedido = itemPedidoService.listarTodos();
@@ -37,6 +48,14 @@ public class ItemPedidoController {
 	}
 	
 	@GetMapping("/listar/{id}")
+	@ApiOperation(value = "Buscar o item de pedido pelo id cadastrado no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Retorna o item de pedido cadastrado no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "404", description = "Item de pedido não encontrado"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<ItemPedido> buscarPorId(@PathVariable Long id) {
 		Optional<ItemPedido> itemPedido = itemPedidoService.buscarPorId(id);
 		
@@ -48,6 +67,13 @@ public class ItemPedidoController {
 	}
 	
 	@PostMapping("/cadastrar")
+	@ApiOperation(value = "Cadastra um novo item de pedido no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Cadastra o novo item de pedido no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<Void> cadastrar(@Valid @RequestBody ItemPedido dadosItemPedido) {
 		
 		Boolean foiCadastrado = itemPedidoService.cadastrar(dadosItemPedido);
@@ -61,6 +87,14 @@ public class ItemPedidoController {
 	}
 	
 	@PutMapping("/atualizar/{id}")
+	@ApiOperation(value = "Atualizar um item de pedido pelo id cadastrado no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Atualiza o item de pedido cadastrado no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "404", description = "Item de pedido não encontrado"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<ItemPedido> atualizar(@PathVariable Long id, @Valid @RequestBody ItemPedido dadosItemPedido) {
 		Optional<ItemPedido> itemPedido = itemPedidoService.atualizar(id, dadosItemPedido);
 		
@@ -72,6 +106,14 @@ public class ItemPedidoController {
 	}
 	
 	@DeleteMapping("/deletar/{id}")
+	@ApiOperation(value = "Deletar um item de pedido pelo id cadastrado no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Deleta o item de pedido cadastrado no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "404", description = "Item de pedido não encontrado"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<String> deletar(@PathVariable Long id) {
 		
 		Boolean foiDeletado = itemPedidoService.deletar(id);

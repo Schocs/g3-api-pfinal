@@ -88,7 +88,7 @@ public class CategoriaController {
 	}
 
 	@GetMapping("/todos")
-	@ApiOperation(value = "Buscar todos as categorias cadastradas no sistema")
+	@ApiOperation(value = "Buscar todas as categorias cadastradas no sistema")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Retorna a lista de todas as categorias cadastradas no sistema"),
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),

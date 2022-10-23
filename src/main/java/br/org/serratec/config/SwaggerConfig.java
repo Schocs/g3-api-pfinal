@@ -1,4 +1,4 @@
-package br.org.serratec.controller;
+package br.org.serratec.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

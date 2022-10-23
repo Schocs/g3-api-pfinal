@@ -32,5 +32,5 @@ public class ProdutoController {
 	return produtoRepository.findAll();
 	}
 
-	}
+}
 
