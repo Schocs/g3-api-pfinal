@@ -1,0 +1,22 @@
+informacoes de bando de dados no heroku 
+
+usuario: otsjcwyfkfgnok
+senha:23955e03911d7f3bf0d858966a27bb55be946e5363d4fa1f7b3a105eb5974d6f
+host: ec2-44-209-24-62.compute-1.amazonaws.com
+porta:5432
+database:ddhe17abc04tq4
+
+
+
+senha de app no e-mail:
+wyopifgufaeyhwns
+
+insert de tabelas do trabalho 
+https://classroom.google.com/u/0/w/NTUxMjc0NTM5NDgw/t/all
+
+Indice de trabalhofinal 
+
+https://classroom.google.com/u/0/w/NTUxMjc0NTM5NDgw/t/all
+
+Planejamento no trello
+https://trello.com/b/XuelvRPN/projeto
