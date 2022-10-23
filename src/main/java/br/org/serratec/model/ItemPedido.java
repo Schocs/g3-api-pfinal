@@ -29,13 +29,11 @@ public class ItemPedido {
 	@Column(nullable = false, name = "preco_venda")
 	private Double precoVenda;
 	
-	//Precisa de FK?
 	@NotBlank(message = "Preencha o produto")
 	@OneToOne
 	@JoinColumn(name = "id_produto")
 	private Produto idProduto;
 	
-	//Precisa de FK?
 	@NotBlank(message = "Preencha o pedido")
 	@ManyToOne
 	@JoinColumn(name = "id_pedido")
