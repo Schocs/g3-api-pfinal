@@ -45,7 +45,7 @@ public class Cliente {
 
 	private String telefone;
 
-	@Column(name = "data_Nascimento")
+	@Column(name = "data_nasc")
 	private LocalDate dataNascimento;
 
 	@OneToOne
