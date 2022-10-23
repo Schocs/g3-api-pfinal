@@ -16,8 +16,25 @@ public class MailConfig {
         message.setFrom("grupo3serratec2022.2@gmail.com");
         message.setTo(para);
         message.setSubject(assunto);
-        message.setText(texto);
         message.setText("Dados do cadastro do usuário:\n" + texto + "\n\n\n\n" + "Serratec Residência-2022");
+        javaMailSender.send(message);
+    }
+    
+    public void sendEmailRemover(String para, String assunto, String texto) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("joao.p.maia@aluno.senai.br");
+        message.setTo(para);
+        message.setSubject(assunto);
+        message.setText("Remoção de cadastro:\n" + texto + "\n\n\n\n" + "Serratec Residência-2022");
+        javaMailSender.send(message);
+    }
+    
+    public void sendEmailAtualizar(String para, String assunto, String texto) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("joao.p.maia@aluno.senai.br");
+        message.setTo(para);
+        message.setSubject(assunto);
+        message.setText("Atualização do cadastro do usuário:\n" + texto + "\n\n\n\n" + "Serratec Residência-2022");
         javaMailSender.send(message);
     }
 }

@@ -62,4 +62,18 @@ public class ClienteDTO {
 		this.telefone = telefone;
 	}
 
+	@Override
+	public String toString() {
+		return "Olá, " + nome + "! Você se cadastrou com sucesso!\n Seu username é " + username + ", cadastrado com o email " + email + " e telefone "
+				+ telefone + ".\n Obrigado por se cadastrar em nossa loja!";
+	}
+	
+	public String toStringRemover() {
+		return "Olá, " + nome + "! Seu cadastro foi removido com sucesso!\n.\n Obrigado por utilizar nossa loja!\n Se puder, deixe-nos um feedback através de nosso email grupo3serratec2022.2@gmail.com. Obrigado e volte sempre!";
+	}
+
+	public String toStringAtualizar() {
+		return "Olá, " + nome + "! Seu cadastro foi atualizado com sucesso!\n.\n Obrigado por utilizar nossa loja!\n Se puder, deixe-nos um feedback através de nosso email grupo3serratec2022.2@gmail.com. Obrigado e volte sempre!";
+	}
+
 }
