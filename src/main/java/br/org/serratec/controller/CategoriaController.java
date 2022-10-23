@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.org.serratec.model.Categoria;
 import br.org.serratec.service.CategoriaService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @RequestMapping("/categoria")
@@ -32,6 +35,13 @@ public class CategoriaController {
 	}
 
 	@PostMapping("/cadastrar")
+	@ApiOperation(value = "Cadastrar nova categoria no sistema.")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Cadastra a nova categoria no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<Categoria> salvar(@Valid @RequestBody Categoria categoria) {
 		Categoria categoriaSalva = service.salvarCategoria(categoria);
 
@@ -39,6 +49,14 @@ public class CategoriaController {
 	}
 
 	@GetMapping("/listar/{id}")
+	@ApiOperation(value = "Buscar uma categoria pelo id cadastrado no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Retorna a categoria cadastrada no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "404", description = "Categoria não encontrada"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<Categoria> getCategoria(@PathVariable Long id) {
 		Optional<Categoria> categoriaExistente = service.encontrarCategoria(id);
 
@@ -51,6 +69,14 @@ public class CategoriaController {
 	}
 
 	@DeleteMapping("/deletar/{id}")
+	@ApiOperation(value = "Deletar uma categoria pelo id cadastrado no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Deleta a categoria cadastrada no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "404", description = "Categoria não encontrada"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<Void> deleteCategoria(@PathVariable Long id) {
 		Optional<Categoria> categoriaExistente = service.encontrarCategoria(id);
 		if (categoriaExistente.isPresent()) {
@@ -62,6 +88,14 @@ public class CategoriaController {
 	}
 
 	@GetMapping("/todos")
+	@ApiOperation(value = "Buscar todas as categorias cadastradas no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Retorna a lista de todas as categorias cadastradas no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "404", description = "Categorias não encontradas"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<List<Categoria>> retornaTodos() {
 		List<Categoria> todasCategorias = service.retornaTodasCategorias();
 		System.out.println();
@@ -73,6 +107,14 @@ public class CategoriaController {
 	}
 
 	@PutMapping("/atualizar/{id}")
+	@ApiOperation(value = "Atualizar uma categoria pelo id cadastrado no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Atualiza a categoria cadastrada no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "404", description = "Categoria não encontrada"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<Categoria> atualizar(@PathVariable Long id, @Valid @RequestBody Categoria categoria) {
 
 		Optional<Categoria> categoriaExistente = service.encontrarCategoria(id);
