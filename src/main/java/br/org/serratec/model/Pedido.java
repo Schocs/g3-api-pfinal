@@ -20,20 +20,15 @@ public class Pedido {
 	@Column(name = "id_pedido")
 	private Long idPedido;
 	
-	
-	@NotBlank (message = "Preencha data do pedido")
 	@Column( name = "data_pedido")
 	private LocalDate dataPedido;
 	
-	@NotBlank (message = "Preencha data da entrega")
 	@Column( name = "data_entrega")
 	private LocalDate dataEntrega ;
 	
-	@NotBlank (message = "Preencha data do envio")
 	@Column( name = "data_envio")
 	private LocalDate dataEnvio;
 	
-	@NotBlank (message = "Preencha Status")
 	@Size(max = 20)
 	@Column(nullable = true, length = 20)
 	private String status;
@@ -45,20 +40,6 @@ public class Pedido {
 	
 	
 	
-	
-	
-	public Pedido(Long id, @NotBlank(message = "Preencha data do pedido") LocalDate dataPedido,
-			@NotBlank(message = "Preencha data da entrega") LocalDate dataEntrega,
-			@NotBlank(message = "Preencha data do envio") LocalDate dataEnvio,
-			@NotBlank(message = "Preencha Status") @Size(max = 20) String status, Cliente cliente) {
-		super();
-		this.idPedido = id;
-		this.dataPedido = dataPedido;
-		this.dataEntrega = dataEntrega;
-		this.dataEnvio = dataEnvio;
-		this.status = status;
-		this.cliente = cliente;
-	}
 	public Long getIdPedido() {
 		return this.idPedido;
 	}
