@@ -23,6 +23,9 @@ import br.org.serratec.dto.ClienteInserirDTO;
 import br.org.serratec.exception.UserException;
 import br.org.serratec.model.Cliente;
 import br.org.serratec.service.ClienteService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @RequestMapping("/clientes")
@@ -35,11 +38,27 @@ public class ClienteController {
 //	private ClienteRepository clienteRepository;
 	
 	@GetMapping
+	@ApiOperation(value = "Buscar todos os clientes cadastrados no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Retorna a lista de todos os clientes cadastrados no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "404", description = "Clientes não encontrados"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<List<ClienteDTO>> listar(){
 		return ResponseEntity.ok(clienteService.listarClientes());
 	}
 	
 	@GetMapping("{id}")
+	@ApiOperation(value = "Buscar o cliente pelo id cadastrado no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Retorna o cliente cadastrado no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "404", description = "Cliente não encontrado"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<ClienteDTO> buscarCliente(@PathVariable Long id) {
 		if(clienteService.buscarCliente(id)!=null) {
 			return ResponseEntity.ok(clienteService.buscarCliente(id));
@@ -49,6 +68,13 @@ public class ClienteController {
 	}
 	
 	@PostMapping("/cadastrar")
+	@ApiOperation(value = "Cadastra um novo cliente no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Cadastra o novo cliente no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<Object> cadastrarCliente(@Valid @RequestBody Cliente cliente){
 		try {
 			ClienteInserirDTO clienteInserirDTO = clienteService.cadastrarCliente(cliente);
@@ -62,6 +88,14 @@ public class ClienteController {
 	}
 	
 	@DeleteMapping("/remover/{id}")
+	@ApiOperation(value = "Deletar um cliente pelo id cadastrado no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Deleta o cliente cadastrado no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "404", description = "Cliente não encontrado"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<Void> removerCadastro(@PathVariable Long id) {
 		boolean foiDeletado = clienteService.removerCadastro(id);
 		if(foiDeletado == false) {
@@ -72,6 +106,14 @@ public class ClienteController {
 	}
 	
 	@PutMapping("/atualizar/{id}")
+	@ApiOperation(value = "Atualizar um cliente pelo id cadastrado no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Atualiza o cliente cadastrado no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "404", description = "Cliente não encontrado"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<Cliente> atualizarCadastro(@PathVariable Long id, @Valid @RequestBody Cliente dadosCliente) {
 		Optional<Cliente> cliente = clienteService.atualizar(id, dadosCliente);
 		if (!cliente.isPresent()) {
