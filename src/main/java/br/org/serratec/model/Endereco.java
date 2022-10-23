@@ -19,6 +19,8 @@ public class Endereco {
 
     private String cidade;
     
+    private Integer numero;
+    
     private String complemento;
 
     private String estado;
@@ -78,4 +80,12 @@ public class Endereco {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+    
+    public Integer getNumero() {
+		return numero;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
 }
