@@ -2,6 +2,7 @@ package br.org.serratec.dto;
 
 import java.sql.Date;
 
+import br.org.serratec.model.Categoria;
 import br.org.serratec.model.Produto;
 
 public class ProdutoDTO {
@@ -12,7 +13,7 @@ public class ProdutoDTO {
 	private Integer estoque;
 	private Date data_cadastro;
 	private Double valor;
-	private String categoria;
+	private Categoria categoria;
 
 	public ProdutoDTO() {
 
@@ -76,11 +77,11 @@ public class ProdutoDTO {
 		this.valor = valor;
 	}
 
-	public String getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 }

@@ -1,13 +1,16 @@
 package br.org.serratec.model;
 
 import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import antlr.collections.List;
 
@@ -20,6 +23,7 @@ public class Produto {
 	@Column(name = "id_produto")
 	private Long idproduto;
 
+	@NotBlank(message = "Prencher nome do produto")
 	@Column(name = "nome", nullable = false, length = 40)
 	private String nome;
 
@@ -36,9 +40,7 @@ public class Produto {
 	private Double valor;
 
 	@OneToOne
-	@Column(name = "categoria")
-	private String categoria;
-
+	private Categoria categoria;
 
 	public Long getIdproduto() {
 		return idproduto;
@@ -88,16 +90,21 @@ public class Produto {
 		this.valor = valor;
 	}
 
-	public String getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
 	public List findAll() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void setId(Long id) {
+		// TODO Auto-generated method stub
+
 	}
 }
