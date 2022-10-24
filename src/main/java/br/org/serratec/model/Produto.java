@@ -1,6 +1,8 @@
 package br.org.serratec.model;
 
-import java.sql.Date;
+
+
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import antlr.collections.List;
 
@@ -36,7 +37,7 @@ public class Produto {
 	private Integer estoque;
 
 	@Column(name = "data_cadastro")
-	private Date dataCadastro;
+	private LocalDate dataCadastro;
 
 	@Column(name = "valor_unitario")
 	private Double valor;
@@ -77,11 +78,11 @@ public class Produto {
 		this.estoque = estoque;
 	}
 
-	public Date getData_cadastro() {
+	public LocalDate getData_cadastro() {
 		return dataCadastro;
 	}
 
-	public void setData_cadastro(Date dataCadastro) {
+	public void setData_cadastro(LocalDate dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 
