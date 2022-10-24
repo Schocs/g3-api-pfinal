@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import antlr.collections.List;
 
@@ -21,33 +23,34 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_produto")
-	private Long idproduto;
+	private Long idProduto;
 
 	@NotBlank(message = "Prencher nome do produto")
 	@Column(name = "nome", nullable = false, length = 40)
 	private String nome;
 
-	@Column(name = "descrição")
+	@Column(name = "descricao")
 	private String descricao;
 
-	@Column(name = "estoque")
+	@Column(name = "qtd_estoque")
 	private Integer estoque;
 
-	@Column(name = "datacadastro")
-	private Date data_cadastro;
+	@Column(name = "data_cadastro")
+	private Date dataCadastro;
 
-	@Column(name = "valor")
+	@Column(name = "valor_unitario")
 	private Double valor;
 
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 
 	public Long getIdproduto() {
-		return idproduto;
+		return idProduto;
 	}
 
-	public void setIdproduto(Long idproduto) {
-		this.idproduto = idproduto;
+	public void setIdproduto(Long idProduto) {
+		this.idProduto = idProduto;
 	}
 
 	public String getNome() {
@@ -75,11 +78,11 @@ public class Produto {
 	}
 
 	public Date getData_cadastro() {
-		return data_cadastro;
+		return dataCadastro;
 	}
 
-	public void setData_cadastro(Date data_cadastro) {
-		this.data_cadastro = data_cadastro;
+	public void setData_cadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
 	public Double getValor() {

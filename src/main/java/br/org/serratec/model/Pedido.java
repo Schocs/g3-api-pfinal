@@ -19,27 +19,24 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_pedido")
 	private Long idPedido;
-	
-	@Column( name = "data_pedido")
+
+	@Column(name = "data_pedido")
 	private LocalDate dataPedido;
-	
-	@Column( name = "data_entrega")
-	private LocalDate dataEntrega ;
-	
-	@Column( name = "data_envio")
+
+	@Column(name = "data_entrega")
+	private LocalDate dataEntrega;
+
+	@Column(name = "data_envio")
 	private LocalDate dataEnvio;
-	
+
 	@Size(max = 20)
 	@Column(nullable = true, length = 20)
 	private String status;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "id_cliente")
+	@JoinColumn(name = "id_cliente", nullable = false)
 	private Cliente cliente;
 
-	
-	
-	
 	public Long getIdPedido() {
 		return this.idPedido;
 	}
@@ -47,7 +44,7 @@ public class Pedido {
 	public Pedido() {
 		super();
 	}
-	
+
 	public void setId(Long id) {
 		this.idPedido = id;
 	}
@@ -92,7 +89,4 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
-	
-	
-	
 }
