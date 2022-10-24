@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -46,10 +46,12 @@ public class Cliente {
 
 	private String telefone;
 
+	private Integer numero;
+
 	@Column(name = "data_nasc")
 	private LocalDate dataNascimento;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 
@@ -123,6 +125,14 @@ public class Cliente {
 
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+
+	public Integer getNumero() {
+		return numero;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
 	}
 
 	@Override

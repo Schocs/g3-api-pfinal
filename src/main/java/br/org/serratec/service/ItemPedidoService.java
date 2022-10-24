@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.org.serratec.model.ItemPedido;
-import br.org.serratec.model.Pedido;
 import br.org.serratec.repository.ItemPedidoRepository;
 
 @Service
