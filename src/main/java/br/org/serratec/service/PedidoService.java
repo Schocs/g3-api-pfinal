@@ -1,12 +1,15 @@
 package br.org.serratec.service;
 
+import java.lang.module.FindException;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.org.serratec.model.Cliente;
 import br.org.serratec.model.Pedido;
+import br.org.serratec.repository.ClienteRepository;
 import br.org.serratec.repository.PedidoRepository;
 
 @Service
@@ -15,6 +18,8 @@ public class PedidoService {
 	@Autowired
 	private PedidoRepository pedidoRepository;
 	
+	@Autowired
+	private  ClienteRepository clienteRepository; 
 
 	public Optional<List<Pedido>> listarTodos() {
 		Optional<List<Pedido>> pedido = Optional.ofNullable(pedidoRepository.findAll());
@@ -33,6 +38,11 @@ public class PedidoService {
 	public boolean cadastrarPedido(Pedido pedido) {
 
 		try {
+			Optional<Cliente> clt = clienteRepository.findById(pedido.getCliente().getIdCliente());
+
+	        if (!clt.isPresent()) {
+	            throw new FindException("Id de cliente não encontrado");
+	        }
 			pedidoRepository.save(pedido);
 			return true;
 
