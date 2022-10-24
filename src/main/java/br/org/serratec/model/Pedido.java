@@ -35,6 +35,7 @@ public class Pedido {
 
 	@ManyToOne
 	@JoinColumn(name = "id_cliente", nullable = false)
+	@NotNull
 	private Cliente cliente;
 
 	public Long getIdPedido() {
