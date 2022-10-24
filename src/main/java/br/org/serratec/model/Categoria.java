@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Categoria {
 
@@ -21,8 +23,9 @@ public class Categoria {
 	private String nome;
 	private String descricao;
 
-	@OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
-	private Set<Produto> Produto = new HashSet<>();
+//	@JsonManagedReference
+//	@OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
+//	private Set<Produto> Produto = new HashSet<>();
 
 	public Long getIdCategoria() {
 		return idCategoria;
@@ -47,13 +50,13 @@ public class Categoria {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	public Set<Produto> getProduto() {
-		return Produto;
-	}
-
-	public void setProduto(Set<Produto> produto) {
-		Produto = produto;
-	}
+//
+//	public Set<Produto> getProduto() {
+//		return Produto;
+//	}
+//
+//	public void setProduto(Set<Produto> produto) {
+//		Produto = produto;
+//	}
 
 }

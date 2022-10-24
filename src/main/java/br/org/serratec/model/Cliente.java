@@ -41,6 +41,7 @@ public class Cliente {
 	private String senha;
 
 	@NotBlank(message = "O campo CPF não pode ser deixado em branco. Não utilize pontos e máscara.")
+	@Size(max = 11, min = 11, message = "Preencha o campo corretamente")
 	private String cpf;
 
 	private String telefone;
