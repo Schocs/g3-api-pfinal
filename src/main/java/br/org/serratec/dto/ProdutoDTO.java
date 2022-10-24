@@ -1,6 +1,6 @@
 package br.org.serratec.dto;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import br.org.serratec.model.Categoria;
 import br.org.serratec.model.Produto;
@@ -11,7 +11,7 @@ public class ProdutoDTO {
 	private String nome;
 	private String descricao;
 	private Integer estoque;
-	private Date data_cadastro;
+	private LocalDate data_cadastro;
 	private Double valor;
 	private Categoria categoria;
 
@@ -61,11 +61,11 @@ public class ProdutoDTO {
 		this.estoque = estoque;
 	}
 
-	public Date getData_cadastro() {
+	public LocalDate getData_cadastro() {
 		return data_cadastro;
 	}
 
-	public void setData_cadastro(Date data_cadastro) {
+	public void setData_cadastro(LocalDate data_cadastro) {
 		this.data_cadastro = data_cadastro;
 	}
 

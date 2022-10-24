@@ -2,7 +2,6 @@ package br.org.serratec.dto;
 
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import br.org.serratec.model.Cliente;
 import br.org.serratec.model.Pedido;

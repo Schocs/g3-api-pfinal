@@ -12,6 +12,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -23,6 +24,11 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 		EmailException emailException = new EmailException(ex.getMessage());
 		return ResponseEntity.unprocessableEntity().body(emailException);
 	}
+	
+	@ExceptionHandler(HttpClientErrorException.class)
+	public ResponseEntity<Object> handleHttpClienteErrorException() {
+		return ResponseEntity.unprocessableEntity().body("Cep inválido");
+	}
 
 	@ExceptionHandler(CpfException.class)
 	public ResponseEntity<Object> handleCpfException(CpfException cx) {
@@ -33,6 +39,12 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(UserException.class)
 	public ResponseEntity<Object> handleUserException(UserException ux) {
 		UserException userException = new UserException(ux.getMessage());
+		return ResponseEntity.unprocessableEntity().body(userException);
+	}
+	
+	@ExceptionHandler(CepException.class)
+	public ResponseEntity<Object> handleCepException(CepException cx) {
+		CepException userException = new CepException(cx.getMessage());
 		return ResponseEntity.unprocessableEntity().body(userException);
 	}
 
