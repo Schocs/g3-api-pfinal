@@ -37,7 +37,7 @@ public class Produto {
 	private Integer estoque;
 
 	@Column(name = "data_cadastro")
-	@NotNull
+	@NotNull(message = "Verifique o preenchimento de dataCadastro")
 	private LocalDate dataCadastro;
 
 	@Column(name = "valor_unitario")
@@ -45,6 +45,7 @@ public class Produto {
 
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
+	@NotNull(message = "Todo produto deve ter uma categoria. Verifique preenchimento.")
 	private Categoria categoria;
 
 	public Long getIdproduto() {
@@ -79,11 +80,11 @@ public class Produto {
 		this.estoque = estoque;
 	}
 
-	public LocalDate getData_cadastro() {
+	public LocalDate getDataCadastro() {
 		return dataCadastro;
 	}
 
-	public void setData_cadastro(LocalDate dataCadastro) {
+	public void setDataCadastro(LocalDate dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 

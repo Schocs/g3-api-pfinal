@@ -11,7 +11,7 @@ public class ProdutoDTO {
 	private String nome;
 	private String descricao;
 	private Integer estoque;
-	private LocalDate data_cadastro;
+	private LocalDate dataCadastro;
 	private Double valor;
 	private Categoria categoria;
 
@@ -24,7 +24,7 @@ public class ProdutoDTO {
 		this.nome = produto.getNome();
 		this.descricao = produto.getDescricao();
 		this.estoque = produto.getEstoque();
-		this.data_cadastro = produto.getData_cadastro();
+		this.dataCadastro = produto.getDataCadastro();
 		this.valor = produto.getValor();
 		this.categoria = produto.getCategoria();
 	}
@@ -61,12 +61,12 @@ public class ProdutoDTO {
 		this.estoque = estoque;
 	}
 
-	public LocalDate getData_cadastro() {
-		return data_cadastro;
+	public LocalDate getDataCadastro() {
+		return dataCadastro;
 	}
 
-	public void setData_cadastro(LocalDate data_cadastro) {
-		this.data_cadastro = data_cadastro;
+	public void setDataCadastro(LocalDate dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
 	public Double getValor() {
