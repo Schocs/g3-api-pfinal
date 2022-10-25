@@ -49,6 +49,9 @@ public class Cliente {
 
 	private Integer numero;
 
+	@Column(name = "info_endereco")
+	private String complementoEndereco;
+
 	@Column(name = "data_nasc")
 	private LocalDate dataNascimento;
 
@@ -134,6 +137,14 @@ public class Cliente {
 
 	public void setNumero(Integer numero) {
 		this.numero = numero;
+	}
+
+	public String getComplementoEndereco() {
+		return complementoEndereco;
+	}
+
+	public void setComplementoEndereco(String complementoEndereco) {
+		this.complementoEndereco = complementoEndereco;
 	}
 
 	@Override

@@ -72,13 +72,13 @@ public class ProdutoController {
 			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
 			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
 	})
-	public ResponseEntity<Void> cadastrarPedido(@Valid @RequestBody Produto produto) {
+	public ResponseEntity<Void> cadastrarProduto(@Valid @RequestBody Produto produto) {
 
 		boolean foiCadastrado = produtoService.cadastrarProduto(produto);
 		if (foiCadastrado) {
 			return ResponseEntity.status(201).build();
 		} else {
-			return ResponseEntity.internalServerError().build();
+			return ResponseEntity.badRequest().build();
 		}
 	}
 

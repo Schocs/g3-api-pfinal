@@ -63,7 +63,7 @@ public class EnderecoController {
 		}
 	}
 	
-	@PostMapping("/cadastar")
+	@PostMapping("/cadastrar")
 	@ApiOperation(value = "Cadastra um novo endereço no sistema")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Cadastra o novo endereço no sistema"),

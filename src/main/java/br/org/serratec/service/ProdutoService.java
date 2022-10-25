@@ -36,7 +36,7 @@ public class ProdutoService {
     public boolean cadastrarProduto(Produto produto) {
 
 		try {
-			categoriaRepository.save(produto.getCategoria());
+			//categoriaRepository.save(produto.getCategoria());
 			produtoRepository.save(produto);
 			return true;
 

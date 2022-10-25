@@ -84,7 +84,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 				return ResponseEntity.status(201).build();
 			}
 			else {
-				return ResponseEntity.internalServerError().build();
+				return ResponseEntity.badRequest().build();
 			}
 		}
 		

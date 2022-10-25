@@ -82,7 +82,7 @@ public class ItemPedidoController {
 			return ResponseEntity.status(201).build();
 		}
 		
-		return ResponseEntity.internalServerError().build();
+		return ResponseEntity.badRequest().build();
 		
 	}
 	
