@@ -24,7 +24,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 
 	@RestController
-	@RequestMapping("/pedido")
+	@RequestMapping("/pedidos")
 	public class PedidoController {
 
 		@Autowired
@@ -49,7 +49,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 			return ResponseEntity.notFound().build();
 		}
 		
-		@GetMapping("/listar/{id}")
+		@GetMapping("/buscar/{id}")
 		@ApiOperation(value = "Buscar o pedido pelo id cadastrado no sistema")
 		@ApiResponses(value = {
 				@ApiResponse(responseCode = "200", description = "Retorna o pedido cadastrado no sistema"),

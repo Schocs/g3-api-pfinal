@@ -37,7 +37,7 @@ public class ClienteController {
 //	@Autowired
 //	private ClienteRepository clienteRepository;
 	
-	@GetMapping
+	@GetMapping("/todos")
 	@ApiOperation(value = "Buscar todos os clientes cadastrados no sistema")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Retorna a lista de todos os clientes cadastrados no sistema"),
@@ -50,7 +50,7 @@ public class ClienteController {
 		return ResponseEntity.ok(clienteService.listarClientes());
 	}
 	
-	@GetMapping("{id}")
+	@GetMapping("/buscar/{id}")
 	@ApiOperation(value = "Buscar o cliente pelo id cadastrado no sistema")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Retorna o cliente cadastrado no sistema"),
@@ -87,7 +87,7 @@ public class ClienteController {
 		}
 	}
 	
-	@DeleteMapping("/remover/{id}")
+	@DeleteMapping("/deletar/{id}")
 	@ApiOperation(value = "Deletar um cliente pelo id cadastrado no sistema")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Deleta o cliente cadastrado no sistema"),

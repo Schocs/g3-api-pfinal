@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-
+import javax.validation.constraints.NotNull;
 
 import antlr.collections.List;
 
@@ -37,6 +37,7 @@ public class Produto {
 	private Integer estoque;
 
 	@Column(name = "data_cadastro")
+	@NotNull
 	private LocalDate dataCadastro;
 
 	@Column(name = "valor_unitario")
