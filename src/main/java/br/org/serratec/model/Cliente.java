@@ -13,9 +13,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-//EM CLIENTE AINDA FALTA COLOCAR UMA VARIÁVEL PARA ENDEREÇO. ACHEI QUE SERIA EMBED, MAS 
-//AGORA ME PARECE QUE PODEMOS DISCUTIR AINDA COMO FAREMOS ISSO. UM CLIENTE PODE TER MAIS DE
-//UM ENDEREÇO, POR EXEMPLO. E ISSO VAI AFETAR NO DTO TB
 @Entity
 public class Cliente {
 
