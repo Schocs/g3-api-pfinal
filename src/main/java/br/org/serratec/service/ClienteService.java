@@ -63,7 +63,7 @@ public class ClienteService {
 		clienteRepository.save(cliente);
 		ClienteInserirDTO clienteInserirDTO = new ClienteInserirDTO(cliente);
 		ClienteDTO clienteDTO = new ClienteDTO(cliente);
-		//mailConfig.sendEmail(cliente.getEmail(), "Cadastro na loja Grupo3", clienteDTO.toString());
+		mailConfig.sendEmail(cliente.getEmail(), "Cadastro na loja Grupo3", clienteDTO.toString());
 		return clienteInserirDTO;
 	}
 	
@@ -73,7 +73,7 @@ public class ClienteService {
 			return false;
 		}
 		ClienteDTO clienteDTO = new ClienteDTO(clienteRepository.findByIdCliente(id));
-		//mailConfig.sendEmailRemover(clienteRepository.findById(id).get().getEmail(), "Remoção do cadastro", clienteDTO.toStringRemover());
+		mailConfig.sendEmailRemover(clienteRepository.findById(id).get().getEmail(), "Remoção do cadastro", clienteDTO.toStringRemover());
 		clienteRepository.deleteById(id);
 		return true;
 	}
@@ -113,7 +113,7 @@ public class ClienteService {
 		dadosCliente.setSenha(bCryptPasswordEncoder.encode(senha));
 		clienteRepository.save(dadosCliente);
 		ClienteDTO clienteDTO = new ClienteDTO(dadosCliente);
-		//mailConfig.sendEmailAtualizar(dadosCliente.getEmail(), "Atualização de cadastro", clienteDTO.toStringAtualizar());
+		mailConfig.sendEmailAtualizar(dadosCliente.getEmail(), "Atualização de cadastro", clienteDTO.toStringAtualizar());
 		return cliente;
 	}
 }
