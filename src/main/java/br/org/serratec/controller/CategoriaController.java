@@ -24,7 +24,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
-@RequestMapping("/categoria")
+@RequestMapping("/categorias")
 public class CategoriaController {
 
 	@Autowired
@@ -48,7 +48,7 @@ public class CategoriaController {
 		return new ResponseEntity<>(categoriaSalva, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/listar/{id}")
+	@GetMapping("/buscar/{id}")
 	@ApiOperation(value = "Buscar uma categoria pelo id cadastrado no sistema")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Retorna a categoria cadastrada no sistema"),

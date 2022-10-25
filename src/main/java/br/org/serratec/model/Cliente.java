@@ -25,6 +25,7 @@ public class Cliente {
 	private Long idCliente;
 
 	@Email(message = "Preencha o campo email corretamente.")
+	@NotBlank(message = "Email não preenchido!")
 	private String email;
 
 	@NotBlank(message = "O campo nome de usuário não pode ser deixado em branco")

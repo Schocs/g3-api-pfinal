@@ -30,11 +30,12 @@ public class Pedido {
 	private LocalDate dataEnvio;
 
 	@Size(max = 20)
-	@Column(nullable = true, length = 20)
+	@Column(length = 20)
+	@NotNull
 	private String status;
 
 	@ManyToOne
-	@JoinColumn(name = "id_cliente", nullable = false)
+	@JoinColumn(name = "id_cliente")
 	@NotNull
 	private Cliente cliente;
 

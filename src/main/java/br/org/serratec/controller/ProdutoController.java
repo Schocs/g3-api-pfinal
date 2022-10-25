@@ -29,7 +29,7 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoService produtoService;
 
-	@GetMapping
+	@GetMapping("/todos")
 	@ApiOperation(value = "Buscar todos os produtos cadastrados no sistema")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Retorna a lista de todos os produtos cadrastrados no sistema"),
@@ -46,7 +46,7 @@ public class ProdutoController {
 		return ResponseEntity.notFound().build();
 	}
 
-	@GetMapping("/listar/{id}")
+	@GetMapping("/buscar/{id}")
 	public ResponseEntity<Produto> listar(@PathVariable Long id) {
 		Optional<Produto> produto = produtoService.listar(id);
 

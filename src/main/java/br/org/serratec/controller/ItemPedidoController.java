@@ -23,12 +23,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
-@RequestMapping("/ItemPedido")
+@RequestMapping("/itenspedidos")
 public class ItemPedidoController {
 	@Autowired
 	ItemPedidoService itemPedidoService;
 	
-	@GetMapping("/listar/todos")
+	@GetMapping("/todos")
 	@ApiOperation(value = "Buscar todos os itens de pedido cadastrados no sistema")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Retorna a lista de todos os itens de pedido cadastrados no sistema"),
@@ -47,7 +47,7 @@ public class ItemPedidoController {
 		return ResponseEntity.ok(itemPedido.get());
 	}
 	
-	@GetMapping("/listar/{id}")
+	@GetMapping("/buscar/{id}")
 	@ApiOperation(value = "Buscar o item de pedido pelo id cadastrado no sistema")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Retorna o item de pedido cadastrado no sistema"),
