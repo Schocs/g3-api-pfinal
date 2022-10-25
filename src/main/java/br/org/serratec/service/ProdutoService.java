@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.org.serratec.model.Produto;
+import br.org.serratec.repository.CategoriaRepository;
 import br.org.serratec.repository.ProdutoRepository;
 
 
@@ -16,7 +17,8 @@ public class ProdutoService {
 	@Autowired
     private ProdutoRepository produtoRepository;	
 
-    
+	@Autowired
+    private CategoriaRepository categoriaRepository;
 
     public  Optional<List<Produto>> listarTodosService() {
     	Optional<List<Produto>> produto = Optional.ofNullable(produtoRepository.findAll());
@@ -34,6 +36,7 @@ public class ProdutoService {
     public boolean cadastrarProduto(Produto produto) {
 
 		try {
+			categoriaRepository.save(produto.getCategoria());
 			produtoRepository.save(produto);
 			return true;
 
