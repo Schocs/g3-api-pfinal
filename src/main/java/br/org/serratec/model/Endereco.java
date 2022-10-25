@@ -26,14 +26,14 @@ public class Endereco {
 	private String localidade;
 
 	private String complemento;
-	
+
 	@Column(name = "estado")
 	private String uf;
 
 	public Endereco() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Endereco(EnderecoDTO enderecoDTO) {
 		this.cep = enderecoDTO.getCep();
 		this.logradouro = enderecoDTO.getLogradouro();

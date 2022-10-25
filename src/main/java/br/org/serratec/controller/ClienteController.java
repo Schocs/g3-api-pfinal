@@ -33,10 +33,7 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteService clienteService;
-	
-//	@Autowired
-//	private ClienteRepository clienteRepository;
-	
+
 	@GetMapping("/todos")
 	@ApiOperation(value = "Buscar todos os clientes cadastrados no sistema")
 	@ApiResponses(value = {
@@ -44,38 +41,33 @@ public class ClienteController {
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
 			@ApiResponse(responseCode = "404", description = "Clientes não encontrados"),
-			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
-	})
-	public ResponseEntity<List<ClienteDTO>> listar(){
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação") })
+	public ResponseEntity<List<ClienteDTO>> listar() {
 		return ResponseEntity.ok(clienteService.listarClientes());
 	}
-	
+
 	@GetMapping("/buscar/{id}")
 	@ApiOperation(value = "Buscar o cliente pelo id cadastrado no sistema")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Retorna o cliente cadastrado no sistema"),
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Retorna o cliente cadastrado no sistema"),
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
 			@ApiResponse(responseCode = "404", description = "Cliente não encontrado"),
-			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
-	})
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação") })
 	public ResponseEntity<ClienteDTO> buscarCliente(@PathVariable Long id) {
-		if(clienteService.buscarCliente(id)!=null) {
+		if (clienteService.buscarCliente(id) != null) {
 			return ResponseEntity.ok(clienteService.buscarCliente(id));
 		} else {
 			return ResponseEntity.notFound().build();
 		}
 	}
-	
+
 	@PostMapping("/cadastrar")
 	@ApiOperation(value = "Cadastra um novo cliente no sistema")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Cadastra o novo cliente no sistema"),
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Cadastra o novo cliente no sistema"),
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
-			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
-	})
-	public ResponseEntity<Object> cadastrarCliente(@Valid @RequestBody Cliente cliente){
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação") })
+	public ResponseEntity<Object> cadastrarCliente(@Valid @RequestBody Cliente cliente) {
 		try {
 			ClienteInserirDTO clienteInserirDTO = clienteService.cadastrarCliente(cliente);
 			URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{username}")
@@ -86,25 +78,23 @@ public class ClienteController {
 			return ResponseEntity.unprocessableEntity().body(e.getMessage());
 		}
 	}
-	
+
 	@DeleteMapping("/deletar/{id}")
 	@ApiOperation(value = "Deletar um cliente pelo id cadastrado no sistema")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Deleta o cliente cadastrado no sistema"),
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Deleta o cliente cadastrado no sistema"),
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
 			@ApiResponse(responseCode = "404", description = "Cliente não encontrado"),
-			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
-	})
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação") })
 	public ResponseEntity<Void> removerCadastro(@PathVariable Long id) {
 		boolean foiDeletado = clienteService.removerCadastro(id);
-		if(foiDeletado == false) {
+		if (foiDeletado == false) {
 			return ResponseEntity.notFound().build();
 		} else {
 			return ResponseEntity.noContent().build();
 		}
 	}
-	
+
 	@PutMapping("/atualizar/{id}")
 	@ApiOperation(value = "Atualizar um cliente pelo id cadastrado no sistema")
 	@ApiResponses(value = {
@@ -112,8 +102,7 @@ public class ClienteController {
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
 			@ApiResponse(responseCode = "404", description = "Cliente não encontrado"),
-			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
-	})
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação") })
 	public ResponseEntity<Cliente> atualizarCadastro(@PathVariable Long id, @Valid @RequestBody Cliente dadosCliente) {
 		Optional<Cliente> cliente = clienteService.atualizar(id, dadosCliente);
 		if (!cliente.isPresent()) {

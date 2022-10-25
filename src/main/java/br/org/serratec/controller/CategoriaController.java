@@ -36,12 +36,10 @@ public class CategoriaController {
 
 	@PostMapping("/cadastrar")
 	@ApiOperation(value = "Cadastrar nova categoria no sistema.")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Cadastra a nova categoria no sistema"),
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Cadastra a nova categoria no sistema"),
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
-			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
-	})
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação") })
 	public ResponseEntity<Categoria> salvar(@Valid @RequestBody Categoria categoria) {
 		Categoria categoriaSalva = service.salvarCategoria(categoria);
 
@@ -55,8 +53,7 @@ public class CategoriaController {
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
 			@ApiResponse(responseCode = "404", description = "Categoria não encontrada"),
-			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
-	})
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação") })
 	public ResponseEntity<Categoria> getCategoria(@PathVariable Long id) {
 		Optional<Categoria> categoriaExistente = service.encontrarCategoria(id);
 
@@ -75,8 +72,7 @@ public class CategoriaController {
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
 			@ApiResponse(responseCode = "404", description = "Categoria não encontrada"),
-			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
-	})
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação") })
 	public ResponseEntity<Void> deleteCategoria(@PathVariable Long id) {
 		Optional<Categoria> categoriaExistente = service.encontrarCategoria(id);
 		if (categoriaExistente.isPresent()) {
@@ -94,8 +90,7 @@ public class CategoriaController {
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
 			@ApiResponse(responseCode = "404", description = "Categorias não encontradas"),
-			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
-	})
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação") })
 	public ResponseEntity<List<Categoria>> retornaTodos() {
 		List<Categoria> todasCategorias = service.retornaTodasCategorias();
 		System.out.println();
@@ -113,8 +108,7 @@ public class CategoriaController {
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
 			@ApiResponse(responseCode = "404", description = "Categoria não encontrada"),
-			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
-	})
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação") })
 	public ResponseEntity<Categoria> atualizar(@PathVariable Long id, @Valid @RequestBody Categoria categoria) {
 
 		Optional<Categoria> categoriaExistente = service.encontrarCategoria(id);

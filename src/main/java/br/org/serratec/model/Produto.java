@@ -1,7 +1,5 @@
 package br.org.serratec.model;
 
-
-
 import java.time.LocalDate;
 
 import javax.persistence.Column;
