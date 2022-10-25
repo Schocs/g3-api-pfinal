@@ -22,6 +22,9 @@ import br.org.serratec.dto.EnderecoDTO;
 import br.org.serratec.exception.CepException;
 import br.org.serratec.model.Endereco;
 import br.org.serratec.service.EnderecoService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @RequestMapping("/enderecos")
@@ -30,12 +33,28 @@ public class EnderecoController {
 	@Autowired
 	private EnderecoService enderecoService;
 	
-	@GetMapping
+	@GetMapping("/todos")
+	@ApiOperation(value = "Buscar todos os endereços cadastrados no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Retorna a lista de todos os endereços cadastrados no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "404", description = "Endereços não encontrados"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<List<EnderecoDTO>> listar(){
 		return ResponseEntity.ok(enderecoService.listar());
 	}
 	
 	@GetMapping("/{cep}")
+	@ApiOperation(value = "Buscar o endereço pelo cep cadastrado no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Retorna o endereço cadastrado no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "404", description = "Endereço não encontrado"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<EnderecoDTO> buscar(@PathVariable String cep) {
 		if(enderecoService.buscar(cep) != null) {
 			return ResponseEntity.ok(enderecoService.buscar(cep));
@@ -45,6 +64,13 @@ public class EnderecoController {
 	}
 	
 	@PostMapping("/cadastar")
+	@ApiOperation(value = "Cadastra um novo endereço no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Cadastra o novo endereço no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<Object> cadastrarEndereco(@Valid @RequestBody Endereco endereco) {
 		try {
 			EnderecoDTO enderecoDTO = enderecoService.inserir(endereco);
@@ -58,6 +84,14 @@ public class EnderecoController {
 	}
 	
 	@DeleteMapping("/deletar/{id}")
+	@ApiOperation(value = "Deletar um endereço pelo id cadastrado no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Deleta o endereço cadastrado no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "404", description = "Endereço não encontrado"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<Void> removerEndereco(@PathVariable Long id) {
 		boolean foiDeletado = enderecoService.deletar(id);
 		if(foiDeletado == false) {
@@ -68,6 +102,14 @@ public class EnderecoController {
 	}
 	
 	@PutMapping("/atualizar/{id}")
+	@ApiOperation(value = "Atualizar um endereço pelo id cadastrado no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Atualiza o endereço cadastrado no sistema"),
+			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
+			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
+			@ApiResponse(responseCode = "404", description = "Endereço não encontrado"),
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
+	})
 	public ResponseEntity<Object> atualizarEndereco(@PathVariable Long id, @Valid @RequestBody Endereco endereco) {
 		try {
 		EnderecoDTO enderecoDTO = enderecoService.atualizar(id, endereco);
