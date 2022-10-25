@@ -15,6 +15,7 @@ import br.org.serratec.exception.CpfException;
 import br.org.serratec.exception.EmailException;
 import br.org.serratec.exception.UserException;
 import br.org.serratec.model.Cliente;
+import br.org.serratec.model.Endereco;
 import br.org.serratec.repository.ClienteRepository;
 import br.org.serratec.repository.EnderecoRepository;
 
@@ -26,6 +27,9 @@ public class ClienteService {
 	
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private EnderecoService enderecoService;
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -57,7 +61,9 @@ public class ClienteService {
 		if(clienteRepository.findByCpf(cliente.getCpf()) != null) {
 			throw new CpfException("CPF já cadastrado");
 		}
-		enderecoRepository.save(cliente.getEndereco());
+		Endereco novoEndereco = new Endereco(enderecoService.buscar(cliente.getEndereco().getCep()));
+		cliente.setEndereco(novoEndereco);
+		enderecoRepository.save(novoEndereco);
 		String senha = cliente.getSenha();
 		cliente.setSenha(bCryptPasswordEncoder.encode(senha));
 		clienteRepository.save(cliente);

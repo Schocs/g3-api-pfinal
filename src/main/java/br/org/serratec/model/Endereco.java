@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import br.org.serratec.dto.EnderecoDTO;
+
 @Entity
 public class Endereco {
 	@Id
@@ -27,6 +29,19 @@ public class Endereco {
 	
 	@Column(name = "estado")
 	private String uf;
+
+	public Endereco() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Endereco(EnderecoDTO enderecoDTO) {
+		this.cep = enderecoDTO.getCep();
+		this.logradouro = enderecoDTO.getLogradouro();
+		this.bairro = enderecoDTO.getBairro();
+		this.localidade = enderecoDTO.getLocalidade();
+		this.complemento = enderecoDTO.getComplemento();
+		this.uf = enderecoDTO.getUf();
+	}
 
 	public Long getIdEndereco() {
 		return idEndereco;
