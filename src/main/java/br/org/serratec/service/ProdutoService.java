@@ -1,11 +1,17 @@
 package br.org.serratec.service;
 
+import java.io.IOException;
+import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.org.serratec.dto.ProdutoDTO;
 import br.org.serratec.model.Produto;
 import br.org.serratec.repository.ProdutoRepository;
 
@@ -14,11 +20,16 @@ public class ProdutoService {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private FotoProdutoService fotoService;
 
-	public Optional<List<Produto>> listarTodosService() {
-		Optional<List<Produto>> produto = Optional.ofNullable(produtoRepository.findAll());
-
-		return produto;
+	public List<ProdutoDTO> listarTodosService() {
+		List<ProdutoDTO> dtos = new ArrayList<>();
+		for (Produto produtos : produtoRepository.findAll()) {
+			dtos.add(inserirUriFoto(produtos));
+		}
+		return dtos;
 	}
 
 	public Optional<Produto> listar(Long id) {
@@ -27,16 +38,9 @@ public class ProdutoService {
 		return produto;
 	}
 
-	public boolean cadastrarProduto(Produto produto) {
-
-		try {
-			// categoriaRepository.save(produto.getCategoria());
-			produtoRepository.save(produto);
-			return true;
-
-		} catch (Exception e) {
-			return false;
-		}
+	public ProdutoDTO cadastrarProduto(Produto produto, MultipartFile file) throws IOException {
+		fotoService.inserir(produtoRepository.save(produto), file);
+		return inserirUriFoto(produto);
 	}
 
 	public Optional<Produto> atualizarService(Long id, Produto dadosProduto) {
@@ -45,7 +49,7 @@ public class ProdutoService {
 		if (!produto.isPresent()) {
 			return produto;
 		}
-		dadosProduto.setId(id);
+		dadosProduto.setIdproduto(id);
 		produtoRepository.save(dadosProduto);
 
 		return produto;
@@ -58,6 +62,14 @@ public class ProdutoService {
 		}
 		produtoRepository.deleteById(id);
 		return true;
+	}
+
+	private ProdutoDTO inserirUriFoto(Produto produto) {
+		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/produtos/{id}/foto")
+				.buildAndExpand(produto.getIdproduto()).toUri();
+		ProdutoDTO dto = new ProdutoDTO(produto);
+		dto.setUri(uri.toString());
+		return dto;
 	}
 
 }
