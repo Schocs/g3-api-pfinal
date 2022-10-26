@@ -13,9 +13,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-//EM CLIENTE AINDA FALTA COLOCAR UMA VARIÁVEL PARA ENDEREÇO. ACHEI QUE SERIA EMBED, MAS 
-//AGORA ME PARECE QUE PODEMOS DISCUTIR AINDA COMO FAREMOS ISSO. UM CLIENTE PODE TER MAIS DE
-//UM ENDEREÇO, POR EXEMPLO. E ISSO VAI AFETAR NO DTO TB
 @Entity
 public class Cliente {
 
@@ -48,6 +45,9 @@ public class Cliente {
 	private String telefone;
 
 	private Integer numero;
+
+	@Column(name = "info_endereco")
+	private String complementoEndereco;
 
 	@Column(name = "data_nasc")
 	private LocalDate dataNascimento;
@@ -134,6 +134,14 @@ public class Cliente {
 
 	public void setNumero(Integer numero) {
 		this.numero = numero;
+	}
+
+	public String getComplementoEndereco() {
+		return complementoEndereco;
+	}
+
+	public void setComplementoEndereco(String complementoEndereco) {
+		this.complementoEndereco = complementoEndereco;
 	}
 
 	@Override

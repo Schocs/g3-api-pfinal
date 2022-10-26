@@ -11,5 +11,5 @@ public class CepException extends RuntimeException {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 }

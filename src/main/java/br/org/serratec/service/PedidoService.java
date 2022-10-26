@@ -14,18 +14,17 @@ import br.org.serratec.repository.PedidoRepository;
 
 @Service
 public class PedidoService {
-	
+
 	@Autowired
 	private PedidoRepository pedidoRepository;
-	
+
 	@Autowired
-	private  ClienteRepository clienteRepository; 
+	private ClienteRepository clienteRepository;
 
 	public Optional<List<Pedido>> listarTodos() {
 		Optional<List<Pedido>> pedido = Optional.ofNullable(pedidoRepository.findAll());
 		return pedido;
 	}
-	
 
 	public Optional<Pedido> listar(Long id) {
 
@@ -33,16 +32,15 @@ public class PedidoService {
 
 		return pedido;
 	}
-	
 
 	public boolean cadastrarPedido(Pedido pedido) {
 
 		try {
 			Optional<Cliente> clt = clienteRepository.findById(pedido.getCliente().getIdCliente());
 
-	        if (!clt.isPresent()) {
-	            throw new FindException("Id de cliente não encontrado");
-	        }
+			if (!clt.isPresent()) {
+				throw new FindException("Id de cliente não encontrado");
+			}
 			pedidoRepository.save(pedido);
 			return true;
 
@@ -50,7 +48,6 @@ public class PedidoService {
 			return false;
 		}
 	}
-	
 
 	public Optional<Pedido> atualizar(Long id, Pedido dadosPedido) {
 
@@ -63,7 +60,6 @@ public class PedidoService {
 		pedidoRepository.save(dadosPedido);
 		return pedido;
 	}
-	
 
 	public boolean deletar(Long id) {
 

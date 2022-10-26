@@ -1,13 +1,11 @@
 package br.org.serratec.model;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Categoria {
@@ -16,14 +14,10 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_categoria")
 	private Long idCategoria;
-	
-	@NotNull
+
+	@NotBlank(message = "Nomeia a categoria para cadastrá-la")
 	private String nome;
 	private String descricao;
-
-//	@JsonManagedReference
-//	@OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
-//	private Set<Produto> Produto = new HashSet<>();
 
 	public Long getIdCategoria() {
 		return idCategoria;
@@ -48,13 +42,5 @@ public class Categoria {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-//
-//	public Set<Produto> getProduto() {
-//		return Produto;
-//	}
-//
-//	public void setProduto(Set<Produto> produto) {
-//		Produto = produto;
-//	}
 
 }

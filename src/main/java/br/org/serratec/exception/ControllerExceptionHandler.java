@@ -24,7 +24,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 		EmailException emailException = new EmailException(ex.getMessage());
 		return ResponseEntity.unprocessableEntity().body(emailException);
 	}
-	
+
 	@ExceptionHandler(HttpClientErrorException.class)
 	public ResponseEntity<Object> handleHttpClienteErrorException() {
 		return ResponseEntity.unprocessableEntity().body("Cep inválido");
@@ -35,13 +35,13 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 		CpfException cpfException = new CpfException(cx.getMessage());
 		return ResponseEntity.unprocessableEntity().body(cpfException);
 	}
-	
+
 	@ExceptionHandler(UserException.class)
 	public ResponseEntity<Object> handleUserException(UserException ux) {
 		UserException userException = new UserException(ux.getMessage());
 		return ResponseEntity.unprocessableEntity().body(userException);
 	}
-	
+
 	@ExceptionHandler(CepException.class)
 	public ResponseEntity<Object> handleCepException(CepException cx) {
 		CepException userException = new CepException(cx.getMessage());

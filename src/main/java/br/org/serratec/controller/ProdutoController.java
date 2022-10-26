@@ -48,13 +48,11 @@ public class ProdutoController {
 
 	@GetMapping("/buscar/{id}")
 	@ApiOperation(value = "Buscar o produto pelo id cadastrado no sistema")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Retorna o produto cadastrado no sistema"),
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Retorna o produto cadastrado no sistema"),
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
 			@ApiResponse(responseCode = "404", description = "Produto não encontrado"),
-			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
-	})
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação") })
 	public ResponseEntity<Produto> listar(@PathVariable Long id) {
 		Optional<Produto> produto = produtoService.listar(id);
 
@@ -66,19 +64,17 @@ public class ProdutoController {
 
 	@PostMapping("/cadastrar")
 	@ApiOperation(value = "Cadastra um novo produto no sistema")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Cadastra o novo produto no sistema"),
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Cadastra o novo produto no sistema"),
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
-			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
-	})
-	public ResponseEntity<Void> cadastrarPedido(@Valid @RequestBody Produto produto) {
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação") })
+	public ResponseEntity<Void> cadastrarProduto(@Valid @RequestBody Produto produto) {
 
 		boolean foiCadastrado = produtoService.cadastrarProduto(produto);
 		if (foiCadastrado) {
 			return ResponseEntity.status(201).build();
 		} else {
-			return ResponseEntity.internalServerError().build();
+			return ResponseEntity.badRequest().build();
 		}
 	}
 
@@ -89,8 +85,7 @@ public class ProdutoController {
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
 			@ApiResponse(responseCode = "404", description = "Produto não encontrado"),
-			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
-	})
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação") })
 	public ResponseEntity<Produto> atualizar(@PathVariable Long id, @Valid @RequestBody Produto dadosProduto) {
 
 		Optional<Produto> produto = produtoService.atualizarService(id, dadosProduto);
@@ -104,13 +99,11 @@ public class ProdutoController {
 
 	@DeleteMapping("/deletar/{id}")
 	@ApiOperation(value = "Deletar um produto pelo id cadastrado no sistema")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Deleta o produto cadastrado no sistema"),
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Deleta o produto cadastrado no sistema"),
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Você não tem permissão para esse recurso"),
 			@ApiResponse(responseCode = "404", description = "Produto não encontrado"),
-			@ApiResponse(responseCode = "500", description = "Erro na aplicação")
-	})
+			@ApiResponse(responseCode = "500", description = "Erro na aplicação") })
 	public ResponseEntity<Void> deletar(@PathVariable Long id) {
 
 		boolean foiDeletado = produtoService.deletar(id);
