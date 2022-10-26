@@ -14,6 +14,7 @@ public class ProdutoDTO {
 	private LocalDate dataCadastro;
 	private Double valor;
 	private Categoria categoria;
+	private String uri;
 
 	public ProdutoDTO() {
 
@@ -27,6 +28,14 @@ public class ProdutoDTO {
 		this.dataCadastro = produto.getDataCadastro();
 		this.valor = produto.getValor();
 		this.categoria = produto.getCategoria();
+	}
+
+	public String getUri() {
+		return uri;
+	}
+
+	public void setUri(String uri) {
+		this.uri = uri;
 	}
 
 	public Long getIdproduto() {
